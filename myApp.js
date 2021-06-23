@@ -71,8 +71,19 @@ const createManyPeople = (arrayOfPeople, done) => {
   });
 };
 
+/**
+ * TODO: Modify the findPeopleByName function to find all the people having a given name, using Model.find() -> [Person]
+ * Use the function argument personName as the search key.
+ * @param {*} personName 
+ * @param {*} done 
+ */
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({name: personName}, function(err, data) {
+    if (err) {
+      return console.error(err);
+    }
+    done(null, data);
+  });
 };
 
 const findOneByFood = (food, done) => {

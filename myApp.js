@@ -114,10 +114,31 @@ const findPersonById = (personId, done) => {
   });
 };
 
+/**
+ * TODO: Modify the findEditThenSave function to find a person by _id (use any of the above methods).
+ * TODO: Add "hamburger" to the list of the person's favoriteFoods (you can use Array.push()).
+ * TODO: Then - inside the find callback - save() the updated Person.
+ * Note: This may be tricky, if in your Schema, you declared favoriteFoods as an Array, without specifying the type (i.e. [String]). In that case, favoriteFoods defaults to Mixed type, and you have to manually mark it as edited using document.markModified('edited-field'). See Mongoose documentation
+ * @param {*} personId search key
+ * @param {*} done callback
+ */
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
 
-  done(null /*, data*/);
+  Person.findById({_id: personId}, (err, person) => {
+    if(err) {
+      return console.error(err);
+    }
+
+    person.favoriteFoods.push(foodToAdd);
+
+    person.save((err, updatedPerson) => {
+      if(err) {
+        return console.error(err);
+      }
+      done(null, updatedPerson);
+    });
+  });
 };
 
 const findAndUpdate = (personName, done) => {

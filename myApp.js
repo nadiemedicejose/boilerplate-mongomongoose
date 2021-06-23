@@ -189,10 +189,26 @@ const removeManyPeople = (done) => {
   });
 };
 
+/**
+ * TODO: Modify the queryChain function to find people who like the food specified by the variable named foodToSearch.
+ * TODO: Sort them by name, limit the results to two documents, and hide their age.
+ * TODO: Chain .find(), .sort(), .limit(), .select(), and then .exec().
+ * TODO: Pass the done(err, data) callback to exec().
+ * @param {*} done callback
+ */
 const queryChain = (done) => {
   const foodToSearch = "burrito";
 
-  done(null /*, data*/);
+  Person.find({favoriteFoods: foodToSearch})
+    .sort({name: 1})
+    .limit(2)
+    .select({age: 0})
+    .exec((err, data) => {
+      if (err) {
+        return console.error(err);
+      }
+      done(null, data);
+    });
 };
 
 /** **Well Done !!**

@@ -141,10 +141,21 @@ const findEditThenSave = (personId, done) => {
   });
 };
 
+/**
+ * TODO: Modify the findAndUpdate function to find a person by Name and set the person's age to 20.
+ * Note: You should return the updated document. To do that, you need to pass the options document { new: true } as the 3rd argument to findOneAndUpdate(). By default, these methods return the unmodified object.
+ * @param {*} personName search key
+ * @param {*} done callback
+ */
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
-  done(null /*, data*/);
+  Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new: true}, (err, updatedPerson) => {
+    if (err) {
+      return console.error(err);
+    }
+    done(null, updatedPerson);
+  });
 };
 
 const removeById = (personId, done) => {

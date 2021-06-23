@@ -158,8 +158,19 @@ const findAndUpdate = (personName, done) => {
   });
 };
 
+/**
+ * TODO: Modify the removeById function to delete one person by the person's _id.
+ * You should use one of the methods findByIdAndRemove() or findOneAndRemove().
+ * @param {*} personId search key
+ * @param {*} done callback
+ */
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findByIdAndRemove({_id: personId}, (err, deleted) => {
+    if (err) {
+      return console.error(err);
+    }
+    done(null, deleted);
+  });
 };
 
 const removeManyPeople = (done) => {

@@ -1,5 +1,15 @@
 require('dotenv').config();
 
+/**
+ * TODO: Add mongodb and mongoose to the project’s package.json.
+ * TODO: Require mongoose as mongoose in myApp.js.
+ * TODO: Create a .env file and add a MONGO_URI variable to it. Its value should be your MongoDB Atlas database URI. Be sure to surround the URI with single or double quotes, and remember that you can't use spaces around the = in environment variables. For example, MONGO_URI='VALUE'.
+ * TODO: Connect to the database using the following syntax:
+ * mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true });
+ */
+const mongoose = require('mongoose');
+const MONGO_URI = process.env.MONGO_URI;
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let Person;
 

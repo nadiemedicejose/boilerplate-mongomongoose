@@ -39,7 +39,7 @@ let Person = mongoose.model("Person", personSchema);
  * TODO: Call the method document.save() on the returned document instance.
  * TODO: Pass to it a callback using the Node convention.
  * This is a common pattern; all the following CRUD methods take a callback function like this as the last argument.
- * @param {*} done 
+ * @param {*} done callback
  */
 const createAndSavePerson = (done) => {
   let person = new Person({
@@ -48,7 +48,7 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ['cereal', 'pasta']
   });
 
-  person.save(function(err, data) {
+  person.save((err, data) => {
     if (err) {
       return console.error(err);
     }
@@ -59,11 +59,11 @@ const createAndSavePerson = (done) => {
 /**
  * TODO: Modify the createManyPeople function to create many people using Model.create() with the argument arrayOfPeople.
  * Note: You can reuse the model you instantiated in the previous exercise.
- * @param {*} arrayOfPeople 
- * @param {*} done 
+ * @param {*} arrayOfPeople array of objects
+ * @param {*} done callback
  */
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople, function(err, data) {
+  Person.create(arrayOfPeople, (err, data) => {
     if (err) {
       return console.error(err);
     }
@@ -73,12 +73,11 @@ const createManyPeople = (arrayOfPeople, done) => {
 
 /**
  * TODO: Modify the findPeopleByName function to find all the people having a given name, using Model.find() -> [Person]
- * Use the function argument personName as the search key.
- * @param {*} personName 
- * @param {*} done 
+ * @param {*} personName search key
+ * @param {*} done callback
  */
 const findPeopleByName = (personName, done) => {
-  Person.find({name: personName}, function(err, data) {
+  Person.find({name: personName}, (err, data) => {
     if (err) {
       return console.error(err);
     }
@@ -87,12 +86,12 @@ const findPeopleByName = (personName, done) => {
 };
 
 /**
- * TODO: Modify the findOneByFood function to find just one person which has a certain food in the person's favorites, using Model.findOne() -> Person. Use the function argument food as search key.
- * @param {*} food 
- * @param {*} done 
+ * TODO: Modify the findOneByFood function to find just one person which has a certain food in the person's favorites, using Model.findOne() -> Person.
+ * @param {*} food search key
+ * @param {*} done callback
  */
 const findOneByFood = (food, done) => {
-  Person.findOne({favoriteFoods: food}, function(err, data) {
+  Person.findOne({favoriteFoods: food}, (err, data) => {
     if (err) {
       return console.error(err);
     }
@@ -101,12 +100,12 @@ const findOneByFood = (food, done) => {
 };
 
 /**
- * TODO: Modify the findPersonById to find the only person having a given _id, using Model.findById() -> Person. Use the function argument personId as the search key.
- * @param {*} personId 
- * @param {*} done 
+ * TODO: Modify the findPersonById to find the only person having a given _id, using Model.findById() -> Person.
+ * @param {*} personId search key
+ * @param {*} done callback
  */
 const findPersonById = (personId, done) => {
-  Person.findById({_id: personId}, function(err, data) {
+  Person.findById({_id: personId}, (err, data) => {
     if (err) {
       return console.error(err);
     }
